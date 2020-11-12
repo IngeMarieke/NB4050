@@ -1,13 +1,14 @@
 classdef Cantor
-    % someting someting
     properties
-        % basic default: 8 iterations, do plot, do zoom, don't save
+        % basic default properties for using the ternary cantor set: 
+        %8 iterations, do plot, do zoom, don't save
         it_max = 8
         plotting = true
         zoom = true
         save_its = false;
-        % plot params: position on screen, do plot the x-axis, pause of 1
-        % second between iterations, line-color blue, line-width 10
+        % basic default properties for plotting the cantor set: 
+        % position on screen, do plot the x-axis, pause of 1 second... 
+        %...between iterations, line-color blue, line-width 10
         position = [100, 900, 900, 80];
         no_x_axis = false;
         ps = 1;
@@ -22,7 +23,7 @@ classdef Cantor
     methods
         function [obj] = ternary(obj, varargin)
             % control function of the cantor class, only function that
-            % needs to be called. If no argument is given, it show the
+            % needs to be called. If no argument is given, it shows the
             % cantor set for 8 iterations, as described in the default 
             if nargin == 2
                 obj.it_max = varargin{1};
@@ -39,7 +40,7 @@ classdef Cantor
             end
         end
         function [ranges] = get_ranges(obj, rng_lst, it, fig)
-            % should be called with obj.ternary()
+            % should only be called by obj.ternary()
             if obj.plotting
                 obj.plot(fig, rng_lst, it);
             end
@@ -57,7 +58,7 @@ classdef Cantor
             end
         end
         function [x, y] = plot(obj, fig, rng_lst, it)
-            % is only called by get_ranges
+            % should only be called by obj.get_ranges()
             s2m = @(s) [s{1:length(s)}];
             x = s2m(rng_lst);
             y = zeros(2,length(rng_lst));
@@ -85,7 +86,7 @@ classdef Cantor
             pause(obj.ps)
         end
         function [obj] = zoom_in(obj)
-            % is only called by obj.ternary()
+            % should only be called by obj.ternary()
             range = [0 1];
             for a = 1:obj.num_frames
                 range = range * obj.percentage;
