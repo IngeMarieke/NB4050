@@ -11,6 +11,7 @@ classdef Cantor
         %...between iterations, line-color blue, line-width 10
         position = [100, 900, 900, 80];
         no_x_axis = false;
+        show_title = true;
         ps = 1;
         cl = 'b';
         lwidth = 10;
@@ -70,7 +71,9 @@ classdef Cantor
             fig.Name = sprintf('Cantor Set iteration: %d',it);
             plot(x,y,obj.cl,'LineWidth',obj.lwidth)
             ax = gca;
-            t = title(sprintf('Cantor Set iteration: %d',it));
+            if obj.show_title
+                t = title(sprintf('Cantor Set iteration: %d',it));
+            end
             t.FontSize = 30;
             ax.YTick = [];
             ax.YColor = 'none';
